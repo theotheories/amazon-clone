@@ -19,7 +19,7 @@ function Payment() {
                 {/* payment section - delivery address */}
                 <div className="payment__section">
                     <div className="payment__title">
-                        <h3>Payment Address</h3>
+                        <h3>Delivery Address</h3>
                     </div>
                     <div className="payment__address">
                         <p>{user?.email}</p>
@@ -30,7 +30,7 @@ function Payment() {
                 {/* payment section - review items */}
                 <div className="payment__section">
                 <div className="payment__title">
-                        <h3>Review your items and delivery method</h3>
+                        <h3>Review Items and Delivery Method</h3>
                     </div>
                     <div className="payment__items">
                         {/* all products in basket show here */}
