@@ -37,7 +37,8 @@ function Header() {
           <div onClick={handleAuthenticaton} className="header__option">
             {/* the onClick= makes it clickable, adds function to it */}
             <span className="header__optionLineOne">
-              Hello {!user ? "Guest" : user.email}
+              Hello {!user ? "Guest" : user.email} 
+              {/* optional chaining handled by the ternary statement so user? not required */}
             </span>
             <span className="header__optionLineTwo">
               {user ? "Sign Out" : "Sign In"}
@@ -66,6 +67,7 @@ function Header() {
             </span>
           </div>
         </Link>
+        <div className="header__gap"></div>
       </div>
     </div>
   );

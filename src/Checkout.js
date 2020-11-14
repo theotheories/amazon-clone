@@ -5,17 +5,6 @@ import Subtotal from "./Subtotal";
 import CheckoutProduct from "./CheckoutProduct";
 import FlipMove from "react-flip-move";
 
-function makeid(length) {
-  var result = "";
-  var characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  var charactersLength = characters.length;
-  for (var i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
-
 function Checkout() {
   const [{ basket, user }, dispatch] = useStateValue();
 
@@ -32,19 +21,18 @@ function Checkout() {
         <div>
           <h3>Hello, {user?.email}</h3>
           <h2 className="checkout__title">Your shopping basket</h2>
-
+          <FlipMove>
           {basket.map((item) => (
-            <FlipMove>
               <CheckoutProduct
-                key={makeid(20)}
+                key={item.id}
                 id={item.id}
                 title={item.title}
                 image={item.image}
                 price={item.price}
                 rating={item.rating}
               />
-            </FlipMove>
           ))}
+          </FlipMove>
         </div>
       </div>
 
