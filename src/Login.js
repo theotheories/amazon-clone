@@ -52,7 +52,7 @@ function Login() {
       <div className="login__container">
         <h1>Sign in</h1>
         <form>
-          <h5>E-mail</h5>
+          <h5>Email</h5>
           <input
             type="text"
             value={email}
@@ -79,8 +79,9 @@ function Login() {
           Sale. Please see our Privacy Notice, our Cookies Notice and our
           Interest-Based Ads Notice.
         </p>
+       
         <button className="login__registerButton" onClick={register}>
-          Create your Amazon Account
+          New to Amazon? Click here
         </button>
       </div>
     </div>

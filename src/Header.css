@@ -1,6 +1,5 @@
 .header {
   height: 60px;
-  width: 100%;
   display: flex;
   place-items: center;
   background-color: #131921;
@@ -12,10 +11,11 @@
 .header__logo {
   width: 100px;
   border: 1px solid transparent;
+  border-radius: 2px;
   object-fit: contain;
-  margin: 0px 20px;
-  margin-top: 18px;
-  transition: ease-in-out, outline .35s ease-in-out;
+  margin: 5px 3px 3px 3px;
+  padding: 10px 10px 0px 10px;
+  transition: ease-in-out, border .30s ease-in-out;
 }
 
 .header__search {
@@ -30,7 +30,7 @@
   padding: 10px;
   border: none;
   width: 100%;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 4px 0px 0px 4px;
 }
 
 .header__searchInput:focus{
@@ -41,8 +41,8 @@
 .header__searchIcon {
   padding: 5px;
   height: 22px !important;
-  background-color: #f0a33f;
-  border-radius: 0px 5px 5px 0px;
+  background-color: #f0c14b;
+  border-radius: 0px 4px 4px 0px;
 }
 
 .header__optionLineOne {
@@ -56,14 +56,18 @@
 
 .header__optionBasket {
   display: flex;
+  justify-content: space-around;
   align-items: center;
   color: white;
   border: 1px solid transparent;
-  transition: ease-in-out, border .35s ease-in-out;
-  margin-top: 3px;
+  border-radius: 2px;
+  transition: ease-in-out, border .20s ease-in-out;
+  margin-top: 5px;
+  padding: 2px;
 }
 
 .header__basketCount {
+  align-items: center;
   margin-left: 7px;
   margin-right: 4px;
 }
@@ -80,11 +84,13 @@
 .header__option {
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding: 2px;
   color: white;
   border: 1px solid transparent;
-  transition: ease-in-out, border .35s ease-in-out;
+  border-radius: 2px;
+  transition: ease-in-out, border .30s ease-in-out;
 }
 
 a {
@@ -92,15 +98,13 @@ a {
 }
 
 .header__logo:hover {
-  outline: 1px solid white;
-  outline-offset: 10px 0px 5px 0px;
+  border: 1px solid white;
+  border-radius: 2px;
   }
 
 .header__option:hover {
   border: 1px solid white;
-  border-width: 1px;
   border-radius: 2px;
-  padding : 0;
 }
 
 .header__optionBasket:hover {

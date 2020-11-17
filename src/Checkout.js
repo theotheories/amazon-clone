@@ -3,7 +3,8 @@ import "./Checkout.css";
 import { useStateValue } from "./StateProvider";
 import Subtotal from "./Subtotal";
 import CheckoutProduct from "./CheckoutProduct";
-import FlipMove from "react-flip-move";
+// import FlipMove from "react-flip-move";
+import { Flipper, Flipped } from "react-flip-toolkit";
 
 function Checkout() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -23,7 +24,7 @@ function Checkout() {
           <h2 className="checkout__title">Your shopping basket</h2>
           
           {basket.map((item) => (
-            <FlipMove children={item} easing="cubic-bezier(1, 0, 0, 1)" duration={1000} appearAnimation="elevator" leaveAnimation="fade" maintainContainerHeight={true}>
+            <Flipped flipId="checkout_product_animated">
               <CheckoutProduct
                 id={item.id}
                 title={item.title}
@@ -31,8 +32,9 @@ function Checkout() {
                 price={item.price}
                 rating={item.rating}
               />
-              </FlipMove>
+              </Flipped>
           ))}
+          
           
         </div>
       </div>

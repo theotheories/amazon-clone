@@ -29,7 +29,19 @@
   margin-top: 10px;
   border-color: #a88734 #9c7e31 #846a29;
   color: #111;
-  border-radius: 2px;
+  border-radius: 4px;
+}
+
+.product > button:hover {
+  background: #f1ba2d;
+}
+.product > button:active {
+  outline: 0;
+  border-color: #e77600;
+  box-shadow: 0 0 3px 2px rgba(228,121,17,.5);
+}
+.product > button:focus{
+  outline: 0;
 }
 
 .product__price {
