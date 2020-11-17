@@ -31,6 +31,6 @@
     /* each title should take up 20% */
 }
 
-.payment__address, .payment__items {
+.payment__address, .payment__items, .payment__details {
     flex: 0.8;
 }

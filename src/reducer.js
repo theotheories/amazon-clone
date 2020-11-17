@@ -8,6 +8,18 @@ export const initialState = {
 export const getBasketTotal = (basket) =>
   basket?.reduce((amount, item) => item.price + amount, 0);
 
+// export  function makeKey(length) {
+//     var result = "";
+//     var characters =
+//       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+//     var charactersLength = characters.length;
+//     for (var i = 0; i < length; i++) {
+//       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+//     }
+//     return result;
+//   }
+
+
 const reducer = (state, action) => {
   console.log(action);
   switch (action.type) {
@@ -16,6 +28,7 @@ const reducer = (state, action) => {
         ...state,
         basket: [...state.basket, action.item],
       };
+
     case "EMPTY_BASKET":
       return {
         ...state,
@@ -33,20 +46,21 @@ const reducer = (state, action) => {
       if (index >= 0) {
         // removes that one item from the basket - the first item with that id in the basket. just removes that first one.
         newBasket.splice(index, 1);
+
       } else {
         console.warn(
           `Cannot remove product (id: ${action.id}) as it is not in the basket.`
-        );
+        )
       }
       return {
         ...state,
         basket: newBasket,
-      };
+      }
     case "SET_USER":
       return {
         ...state,
-        user: action.user,
-      };
+        user: action.user
+      }
 
     default:
       return state;

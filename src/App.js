@@ -8,7 +8,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React, { useEffect } from "react";
 import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 //now we create a listener, useEffect, which keeps track of who is signed in.
+
+const promise = loadStripe("pk_test_51HoY1tFVUMWkRx8VExEWDw4sYbM7y7epJUezhRteaibBjrsjosWGdSVNsKuvv4zUczYsk2qoW1IawmbgswdXiZx900hgivBTsu");
 
 function App() {
   //magic react context api usage code line
@@ -51,7 +55,9 @@ function App() {
           </Route>
           <Route path="/payment">
             <Header />
-            <Payment />
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
           </Route>
           <Route path="/">
             <Header />
