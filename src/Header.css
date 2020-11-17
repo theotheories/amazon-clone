@@ -60,6 +60,7 @@
   color: white;
   border: 1px solid transparent;
   transition: ease-in-out, border .35s ease-in-out;
+  margin-top: 3px;
 }
 
 .header__basketCount {
