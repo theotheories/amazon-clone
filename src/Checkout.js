@@ -23,6 +23,7 @@ function Checkout() {
           <h2 className="checkout__title">Your shopping basket</h2>
           
           {basket.map((item) => (
+            <FlipMove children={item} easing="cubic-bezier(1, 0, 0, 1)" duration={1000} appearAnimation="elevator" leaveAnimation="fade" maintainContainerHeight={true}>
               <CheckoutProduct
                 id={item.id}
                 title={item.title}
@@ -30,6 +31,7 @@ function Checkout() {
                 price={item.price}
                 rating={item.rating}
               />
+              </FlipMove>
           ))}
           
         </div>
