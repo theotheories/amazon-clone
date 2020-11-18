@@ -54,7 +54,7 @@ function Home() {
         <div className="home__row">
           <Product
             id={28347902374}
-            title="Philips 499P9H/00 Super Widescreen, Dual QHD, VA W-LED Curved Monitor (5120x1440/5ms/1xDP/2xHDMI/ USB-C) Webcam, Speakers"
+            title="Philips 499P9H/00 Super Widescreen, Dual QHD, VA W-LED Curved Monitor Webcam, Speakers"
             image="https://images-na.ssl-images-amazon.com/images/I/513xuyxvG2L._AC_SL1181_.jpg"
             price={999.99}
             rating={5}

@@ -7,6 +7,7 @@ import "./Payment.css";
 import { getBasketTotal } from './reducer';
 import CurrencyFormat from 'react-currency-format';
 import axios from "./axios";
+import { db } from "./firebase";
 
 function Payment() {
     const [{ basket, user }, dispatch] = useStateValue();
@@ -37,7 +38,9 @@ function Payment() {
         getClientSecret();
     }, [basket])
 
-    console.log("The Client Secret is >>> ", clientSecret)
+    // debug, check object props, e.g. uid not id within the user object
+    // console.log("The Client Secret is >>> ", clientSecret)
+    // console.log("The user is >>> ", user);
 
     const handleSubmit = async (event) => {
         // do all the fancy stripe stuff
@@ -50,13 +53,30 @@ function Payment() {
             } //.then good for promises
         }).then(({ paymentIntent })=>{
             // paymentIntent is payment confirmation
+            
+            // must protect ENSURE USER SIGNED IN BEFORE ORDER
+            // i push the order into the (noSQL) firestore db
+            db
+                .collection("users")
+                .doc(user?.uid)
+                .collection("orders")
+                .doc(paymentIntent.id)
+                .set({
+                    basket: basket, 
+                    amount: paymentIntent.amount, 
+                    created: paymentIntent.created
+                });
+            
             setSucceeded(true);
             setError(null);
             setProcessing(false);
+            dispatch({
+                type: "EMPTY_BASKET"
+            });
 
             history.replace("/orders");
             // now payment is done, swap the page the user is on as i dont want them to come back to payment page. this instead of history push
-
+            // card number to use is 4242424242424242 4/24 242 42424 for testing purposes
         })
 
     }
@@ -117,7 +137,7 @@ function Payment() {
                             <div className="payment__priceContainer">
                                 <CurrencyFormat
                                     renderText={(value) => (
-                                        <h3>Order total: {value}</h3>
+                                        <h3 className="order__total">Order total: {value}</h3>
                                     )}
                                     decimalScale={2}
                                     value={getBasketTotal(basket)}
