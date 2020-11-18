@@ -3,7 +3,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: "..." // the API (cloud function) URL
+    baseURL: "http://localhost:5001/clone-1801d/us-central1/api" // the API (cloud function) URL. when i run firebase emulators:start it gave me a local URL i can use for this local API endpoint
 });
 
 export default instance;

@@ -27,8 +27,23 @@ app.use(express.json());
 
 // - api routes
 // set up a dummy route to test that things are working
-app.get("/", (request, response) => response.status(200).send("hello world"))
+// good for debugging. ive seen hello world on the webpage commented below with port 5001 etc 
+app.get("/", (request, response) => response.status(200).send("hello world"));
 
+app.post("/payments/create", async (request, response) => {
+    // handle query params
+    const total = request.query.total;
+    console.log("Payment request received for this amount >>> ", total);
+    const paymentIntent = await stripe.paymentIntents.create({
+        amount: total, // in subunits of the currency
+        currency: "gbp", // use correct currency code
+    });
+
+    // 200 = all OK, 201 = everything OK, something created
+    response.status(201).send({
+        clientSecret: paymentIntent.client_secret,
+    })
+})
 // - listen command
 // secure cloud functions coming in here
 // this is the setup needed to get the backend express app running on a cloud function.
@@ -37,3 +52,4 @@ app.get("/", (request, response) => response.status(200).send("hello world"))
 // spins up the express server, on localhost port 4000. also find functions[api] http function initialised with a url endpoint
 // example endpoint http://localhost:5001/clone-1801d/us-central1/api
 exports.api = functions.https.onRequest(app)
+// the .api ^ is where the  http://localhost:5001/clone-1801d/us-central1/api get its /api at the end. 
