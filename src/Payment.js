@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useElements, useStripe, CardElement } from '@stripe/react-stripe-js';
 import { Link, useHistory } from 'react-router-dom';
 import { useStateValue } from './StateProvider';
@@ -6,6 +6,7 @@ import CheckoutProduct from './CheckoutProduct';
 import "./Payment.css";
 import { getBasketTotal } from './reducer';
 import CurrencyFormat from 'react-currency-format';
+import axios from "./axios";
 
 function Payment() {
     const [{ basket, user }, dispatch] = useStateValue();
@@ -14,11 +15,48 @@ function Payment() {
     const stripe = useStripe();
     const elements = useElements();
 
+    const [succeeded, setSucceeded] = useState(false);
+    const [processing, setProcessing] = useState("");
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(true);
+    const [clientSecret, setClientSecret] = useState(true);
 
-    const handleSubmit = e => {
+    useEffect(() => {
+        // generate the stripe secret which allows us to charge a customer
+        const getClientSecret = async () => {
+            const response = await axios({
+                    method: "post",
+                    url: `/payments/create?total=${getBasketTotal(basket) * 100}`
+                    // ` useful
+                    // ? is for query params
+                    // Stripe expects the total in a currency's subunits, ie pence hence we multiply by 100
+                });
+                setClientSecret(response.data.clientSecret)
+        }
+        // any time the basket updates, update stripe, get a new clientsecret, so we can take payment, v important snippet
+        getClientSecret();
+    }, [basket])
+
+    const handleSubmit = async (event) => {
         // do all the fancy stripe stuff
+        event.preventDefault();
+        setProcessing(true);
+
+        const payload = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: elements.getElement(CardElement)
+            } //.then good for promises
+        }).then(({ paymentIntent })=>{
+            // paymentIntent is payment confirmation
+            setSucceeded(true);
+            setError(null);
+            setProcessing(false);
+
+            history.replace("/orders");
+            // now payment is done, swap the page the user is on as i dont want them to come back to payment page. this instead of history push
+
+        })
+
     }
 
     const handleChange = event => {
@@ -85,7 +123,12 @@ function Payment() {
                                     thousandSeparator={true}
                                     prefix={"£"}
                                 />
+                                <button disabled={processing || disabled || succeeded}>
+                                    <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
+                                </button>
                             </div>
+                            {/* errors */}
+                            {error && <div>{error}</div>}
                         </form>
                     </div>
                 </div>
