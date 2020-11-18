@@ -27,11 +27,13 @@ app.use(express.json());
 
 // - api routes
 // set up a dummy route to test that things are working
-app.get("/", (request, response) => res.status(200).send("hello world"))
+app.get("/", (request, response) => response.status(200).send("hello world"))
 
 // - listen command
 // secure cloud functions coming in here
 // this is the setup needed to get the backend express app running on a cloud function.
 // we can emulate this on local with firebase, in order to test it before deploy
 // terminal - firebase emulators:start
+// spins up the express server, on localhost port 4000. also find functions[api] http function initialised with a url endpoint
+// example endpoint http://localhost:5001/clone-1801d/us-central1/api
 exports.api = functions.https.onRequest(app)
