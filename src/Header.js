@@ -67,7 +67,6 @@ function Header() {
             </span>
           </div>
         </Link>
-        <div className="header__gap"></div>
       </div>
     </div>
   );

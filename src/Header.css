@@ -63,19 +63,15 @@
   border-radius: 2px;
   transition: ease-in-out, border .20s ease-in-out;
   margin-top: 5px;
-  padding: 2px;
+  margin-right: 5px;
+  padding: 3px;
 }
 
 .header__basketCount {
   align-items: center;
-  margin-left: 7px;
-  margin-right: 4px;
+  margin-left: 5px;
+  margin-right: 0px;
 }
-
-.header__gap {
-  width: 6px;
-}
-
 .header__nav {
   display: flex;
   justify-content: space-evenly;
@@ -84,9 +80,9 @@
 .header__option {
   display: flex;
   flex-direction: column;
-  margin-left: 8px;
-  margin-right: 8px;
-  padding: 2px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 3px;
   color: white;
   border: 1px solid transparent;
   border-radius: 2px;
@@ -113,5 +109,5 @@ a {
 }
 
 .header__searchIcon:hover {
-  background-color: #FF9900;
+  background-color: #fca82a;
 }
