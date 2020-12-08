@@ -87,6 +87,8 @@ function Payment() {
         setDisabled(event.empty);
         setError(event.error ? event.error.message : "");
     }
+
+    console.log({user})
     return (
         <div className="payment">
             <div className="payment__container">
@@ -96,14 +98,14 @@ function Payment() {
                         )
                 </h1>
                 {/* payment section - delivery address */}
-                <div className="payment__section">
+            <div className="payment__section">
                     <div className="payment__title">
                         <h3>Delivery Address</h3>
                     </div>
                     <div className="payment__address">
-                        <p>{user?.email}</p>
-                        <p>123 Pleasant View</p>
-                        <p>Bristol, UK</p>
+                        {user===null ? 
+                        <p><strong><em>Sign in before continuing</em></strong></p>
+                            : <div><p>{user?.email}</p><p>123 Pleasant View</p><p>Bristol, UK</p></div>}
                     </div>
                 </div>
                 {/* payment section - review items */}
@@ -145,9 +147,11 @@ function Payment() {
                                     thousandSeparator={true}
                                     prefix={"£"}
                                 />
-                                <button disabled={processing || disabled || succeeded}>
+                                {user===null ? <p><em>Sign in before continuing</em></p> : 
+                                 <button disabled={processing ||disabled || succeeded}>
                                     <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
-                                </button>
+                                </button> 
+                                }
                             </div>
                             {/* errors */}
                             {error && <div>{error}</div>}

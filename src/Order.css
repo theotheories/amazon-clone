@@ -4,9 +4,11 @@
     border: 1px solid lightgray;
     background-color: white;
     position: relative;
+    overflow: hidden;
 }
 
 .order__id {
+    overflow: hidden;
     position: absolute;
     top: 40px;
     right: 20px;

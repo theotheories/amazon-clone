@@ -6,16 +6,18 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  overflow: hidden;
 }
 
 .header__logo {
-  width: 100px;
+  min-width: 10px;
+  max-width: 100px;
   border: 1px solid transparent;
   border-radius: 2px;
   object-fit: contain;
   margin: 5px 3px 3px 3px;
   padding: 10px 10px 0px 10px;
-  transition: ease-in-out, border .30s ease-in-out;
+  transition: ease-in-out, border .20s ease-in-out;
 }
 
 .header__search {
@@ -86,7 +88,7 @@
   color: white;
   border: 1px solid transparent;
   border-radius: 2px;
-  transition: ease-in-out, border .30s ease-in-out;
+  transition: ease-in-out, border .20s ease-in-out;
 }
 
 a {
