@@ -20,11 +20,13 @@ function Checkout() {
         />
 
         <div>
-          <h3>Hello, {user?.email}</h3>
+          {user===null ? 
+          <h3>Hello Guest, please Sign In</h3> 
+          : <h3>Hello, {user?.email}</h3>}
           <h2 className="checkout__title">Your shopping basket</h2>
           
           {basket.map((item) => (
-            <Flipped flipId="checkout_product_animated">
+            
               <CheckoutProduct
                 id={item.id}
                 title={item.title}
@@ -32,7 +34,7 @@ function Checkout() {
                 price={item.price}
                 rating={item.rating}
               />
-              </Flipped>
+            
           ))}
           
           

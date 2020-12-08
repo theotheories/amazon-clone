@@ -104,7 +104,7 @@ function Payment() {
                     </div>
                     <div className="payment__address">
                         {user===null ? 
-                        <p><strong><em>Sign in before continuing</em></strong></p>
+                        <p><em>Sign in before continuing</em></p>
                             : <div><p>{user?.email}</p><p>123 Pleasant View</p><p>Bristol, UK</p></div>}
                     </div>
                 </div>

@@ -38,12 +38,13 @@ function Orders() {
     return (
         <div className="orders">
            <h1>Your orders</h1> 
-
+        {user===null ? <p>Sign in to view your order history</p> :
            <div className="orders__order">
                {orders?.map(order => (
                    <Order order={order} />
                ))}
            </div>
+        }
         </div>
     )
 }
